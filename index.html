@@ -87,7 +87,7 @@
 
     function sendCmd(cmd) {
       const val = document.getElementById('search').value;
-      const url = `https://12a7b84a2779.ngrok-free.app/remote?cmd=${cmd}&val=${encodeURIComponent(val)}&source=${source}`;
+      const url = `https://573e0c0e47ee.ngrok-free.app/remote?cmd=${cmd}&val=${encodeURIComponent(val)}&source=${source}`;
       fetch(url)
         .then(res => res.text())
         .then(data => console.log("✅ Success:", data))
