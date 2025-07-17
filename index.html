@@ -7,22 +7,24 @@
   <style>
     body {
       font-family: sans-serif;
-      background: repeating-linear-gradient(
-        45deg, #111, #111 10px, #1a1a1a 10px, #1a1a1a 20px);
+      background: repeating-linear-gradient(45deg, #111, #111 10px, #1a1a1a 10px, #1a1a1a 20px);
       color: #fff;
       padding: 20px;
       text-align: center;
     }
+
     h1 {
       font-size: 2rem;
       color: lime;
     }
+
     .controls {
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
       margin-top: 20px;
     }
+
     button, input {
       font-size: 1.2rem;
       padding: 16px;
@@ -31,14 +33,22 @@
       border: 1px solid #666;
       border-radius: 10px;
       width: 100%;
+      transition: background 0.2s;
     }
+
+    button:active {
+      background: red;
+    }
+
     input {
       text-align: center;
     }
+
     .tab-buttons {
       display: flex;
       margin-bottom: 10px;
     }
+
     .tab-buttons button {
       flex: 1;
       padding: 10px;
@@ -47,11 +57,19 @@
       border: none;
       cursor: pointer;
     }
+
     .tab-buttons button.active {
       background-color: #0a84ff;
     }
+
     .emoji {
       font-size: 1.3rem;
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: limegreen;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -66,14 +84,16 @@
 
   <div class="controls">
     <input id="search" placeholder="Search for a song..." />
-    <button onclick="sendCmd('search')">Search</button>
+    <button onclick="sendCmd('search')">Search & Play</button>
     <button onclick="sendCmd('playpause')">Play / Pause</button>
     <button onclick="sendCmd('next')">Next Track</button>
     <button onclick="sendCmd('prev')">Previous Track</button>
     <button onclick="sendCmd('volup')">Volume Up</button>
     <button onclick="sendCmd('voldown')">Volume Down</button>
-    <button onclick="sendCmd('light')">💡 Backyard Light</button>
+    <button style="background: red;" onclick="sendCmd('light')">💡 Backyard Light</button>
   </div>
+
+  <div class="footer">DrixyMint Lime Remote v1.0</div>
 
   <script>
     let source = 'yt'; // default source
@@ -87,7 +107,7 @@
 
     function sendCmd(cmd) {
       const val = document.getElementById('search').value;
-      const url = `https://573e0c0e47ee.ngrok-free.app/remote?cmd=${cmd}&val=${encodeURIComponent(val)}&source=${source}`;
+      const url = `https://YOUR-NGROK-ID.ngrok-free.app/remote?cmd=${cmd}&val=${encodeURIComponent(val)}&source=${source}`;
       fetch(url)
         .then(res => res.text())
         .then(data => console.log("✅ Success:", data))
